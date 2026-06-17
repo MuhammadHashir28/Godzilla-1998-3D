@@ -50,8 +50,8 @@ function Loader() {
 /* ---------------- MODEL PATHS ---------------- */
 
 const modelPaths = {
-  a: "/models/godzilla-model-a.glb",
-  b: "/models/godzilla-model-b.glb",
+  a: "/models/godzilla-a-draco.glb",
+  b: "/models/godzilla-b-draco.glb",
 };
 
 /* ---------------- MODEL ---------------- */
