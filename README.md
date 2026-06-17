@@ -1,4 +1,3 @@
-]
 # Godzilla 1998 3D Cinematic Landing Page
 
 A fast, highly immersive, and cinematic React landing page inspired by the 1998 *Godzilla* film that uses 3d models to make the website modern. This project combines a dark, neon-green HUD aesthetic with responsive layouts, modular components, and cinematic media features.
