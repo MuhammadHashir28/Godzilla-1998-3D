@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Crosshair, Maximize2, Play, Radio, ScanLine, ShieldAlert } from "lucide-react";
+import { Analytics } from "@vercel/analytics/react";
 import ModelStage from "../components/ModelStage";
 import MusicWidget from "../components/MusicWidget";
 
@@ -419,6 +420,7 @@ export default function App() {
       <TimelineSection />
       <Footer />
        <MusicWidget />
+      <Analytics />
     </>
   );
 }
