@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://godzilla-1998-3-d.vercel.app/
