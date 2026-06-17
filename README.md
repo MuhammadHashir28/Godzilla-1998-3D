@@ -5,7 +5,7 @@ A fast, highly immersive, and cinematic React landing page inspired by the 1998 
 ## Previews
 
 ### Landing Page Showcase
-![Landing Page Showcase][(https://raw.githubusercontent.com/MuhammadHashir28/Godzilla-1998-3D/refs/heads/main/public/assets/website-preview.PNG)
+![Website Preview](https://raw.githubusercontent.com/MuhammadHashir28/Godzilla-1998-3D/refs/heads/main/public/assets/website-preview.PNG)
 
 
 ---
