@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Crosshair, Maximize2, Menu, Play, Radio, ScanLine, ShieldAlert, X } from "lucide-react";
+import { Crosshair, Maximize2, Play, Radio, ScanLine, ShieldAlert } from "lucide-react";
 import ModelStage from "../components/ModelStage";
 import MusicWidget from "../components/MusicWidget";
 
