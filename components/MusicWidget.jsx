@@ -111,9 +111,9 @@ export default function MusicWidget() {
       <div id="yt1" />
       <div id="yt2" />
 
-      {/* button */}
-      <button className="music-btn" onClick={toggleAll}>
-      <i className={isPlaying ? "ri-volume-up-fill" : "ri-volume-mute-fill"} />      </button>
+      <button className="music-btn" onClick={toggleAll} aria-label={isPlaying ? "Mute audio" : "Play audio"}>
+        <i className={isPlaying ? "ri-volume-up-fill" : "ri-volume-mute-fill"} />
+      </button>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Crosshair, Maximize2, Play, Radio, ScanLine, ShieldAlert } from "lucide-react";
+import { Crosshair, Maximize2, Menu, Play, Radio, ScanLine, ShieldAlert, X } from "lucide-react";
 import ModelStage from "../components/ModelStage";
 import MusicWidget from "../components/MusicWidget";
 
@@ -136,25 +136,97 @@ function TimelineCard({ idx, place, text, delay }) {
 
 function Nav() {
   const scrollY = useScrollY();
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className={`nav ${scrollY > 60 ? "is-scrolled" : ""}`}>
-      <a className="brand" href="#top" aria-label="Godzilla home">
-        <span>G</span>
-        <strong>Godzilla</strong>
-        <em>1998</em>
-      </a>
-      <div className="nav-links">
-        {NAV.map((item) => (
-          <a key={item} href={`#${item.toLowerCase()}`}>
-            {item}
+    <>
+      <nav className={`nav ${scrollY > 60 ? "is-scrolled" : ""}`}>
+        <a className="brand" href="#top" aria-label="Godzilla home" onClick={closeMenu}>
+          <span>G</span>
+          <strong>Godzilla</strong>
+          <em>1998</em>
+        </a>
+        <div className="nav-links">
+          {NAV.map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`}>
+              {item}
+            </a>
+          ))}
+        </div>
+        <a className="nav-button desktop-only-btn" href="https://st6.febspot.com/remote_control.php?file=B64YTo0OntzOjQ6InRpbWUiO2k6MTc4MTU2Mzk2NztzOjU6ImxpbWl0IjtpOjA7czo0OiJmaWxlIjtzOjM3OiIvdmlkZW9zLzQ4NjAwMC80ODY5ODUvNDg2OTg1XzcyMHAubXA0IjtzOjI6ImN2IjtzOjMyOiI1N2UxM2NmNWI5YTJhM2Q3MDMyNTNhYzBhNjRjYjY1YiI7fQ%3D%3D" target="_blank" rel="noreferrer">
+          <Play size={14} /> Watch Movie
+        </a>
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </nav>
+
+      {/* Mobile Drawer Overlay */}
+      <div className={`mobile-drawer-backdrop ${isOpen ? "is-open" : ""}`} onClick={closeMenu} aria-hidden />
+      <div className={`mobile-drawer ${isOpen ? "is-open" : ""}`} role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div className="mobile-drawer-header">
+          <a className="brand" href="#top" onClick={closeMenu}>
+            <span>G</span>
+            <strong>Godzilla</strong>
+            <em>1998</em>
           </a>
-        ))}
+          <button type="button" className="mobile-drawer-close" onClick={closeMenu} aria-label="Close menu">
+            <X size={20} />
+          </button>
+        </div>
+        <div className="mobile-drawer-nav">
+          {NAV.map((item, index) => (
+            <a key={item} href={`#${item.toLowerCase()}`} onClick={closeMenu} style={{ animationDelay: `${index * 0.05}s` }}>
+              <span className="mobile-nav-num">0{index + 1}</span>
+              <span className="mobile-nav-title">{item}</span>
+            </a>
+          ))}
+        </div>
+        <div className="mobile-drawer-actions">
+          <a
+            className="primary-btn mobile-cta"
+            href="https://st6.febspot.com/remote_control.php?file=B64YTo0OntzOjQ6InRpbWUiO2k6MTc4MTU2Mzk2NztzOjU6ImxpbWl0IjtpOjA7czo0OiJmaWxlIjtzOjM3OiIvdmlkZW9zLzQ4NjAwMC80ODY5ODUvNDg2OTg1XzcyMHAubXA0IjtzOjI6ImN2IjtzOjMyOiI1N2UxM2NmNWI5YTJhM2Q3MDMyNTNhYzBhNjRjYjY1YiI7fQ%3D%3D"
+            target="_blank"
+            rel="noreferrer"
+            onClick={closeMenu}
+          >
+            <Play size={16} /> Watch Movie
+          </a>
+          <a
+            className="ghost-btn mobile-cta"
+            href="https://www.youtube.com/results?search_query=Godzilla+1998+trailer"
+            target="_blank"
+            rel="noreferrer"
+            onClick={closeMenu}
+          >
+            Watch Trailer
+          </a>
+        </div>
+        <div className="mobile-drawer-footer">
+          <span>Target acquired • 54m • 500t</span>
+        </div>
       </div>
-      <a className="nav-button" href="https://st6.febspot.com/remote_control.php?file=B64YTo0OntzOjQ6InRpbWUiO2k6MTc4MTU2Mzk2NztzOjU6ImxpbWl0IjtpOjA7czo0OiJmaWxlIjtzOjM3OiIvdmlkZW9zLzQ4NjAwMC80ODY5ODUvNDg2OTg1XzcyMHAubXA0IjtzOjI6ImN2IjtzOjMyOiI1N2UxM2NmNWI5YTJhM2Q3MDMyNTNhYzBhNjRjYjY1YiI7fQ%3D%3D" target="_blank" rel="noreferrer">
-        <Play size={14} /> Watch Movie
-      </a>
-    </nav>
+    </>
   );
 }
 
@@ -357,9 +429,12 @@ function GallerySection() {
         ))}
       </div>
       {active && (
-        <div className="lightbox" onClick={() => setActive(null)} role="button" tabIndex={0}>
-          <img src={active.src} alt={active.label} />
-          <p>Click anywhere to close</p>
+        <div className="lightbox" onClick={() => setActive(null)} role="dialog" aria-modal="true">
+          <button type="button" className="lightbox-close" onClick={() => setActive(null)} aria-label="Close image">
+            <X size={20} />
+          </button>
+          <img src={active.src} alt={active.label} onClick={(e) => e.stopPropagation()} />
+          <p>Tap anywhere to close</p>
         </div>
       )}
     </section>

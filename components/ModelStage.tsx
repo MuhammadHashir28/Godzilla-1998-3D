@@ -154,6 +154,7 @@ export default React.memo(function ModelStage({
   return (
     <Canvas
       className="model-canvas"
+      style={{ touchAction: "pan-y" }}
       dpr={[1, dpr]}
       frameloop="demand"
       camera={{
